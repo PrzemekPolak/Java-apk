@@ -12,7 +12,7 @@ public class CreditCard {
     }
 
     public void assignCredit(BigDecimal creditLimit) {
-        if (isBelowCreditLimit(BigDecimal creditLimit)) {
+        if (isBelowCreditLimit(creditLimit)) {
             throw new CreditBelowThresholdException();
         }
         this.creditLimit = creditLimit;
@@ -35,5 +35,10 @@ public class CreditCard {
 
     public BigDecimal getBalance() {
         return balance;
+    }
+
+    public String getNumber() {
+
+
     }
 }
