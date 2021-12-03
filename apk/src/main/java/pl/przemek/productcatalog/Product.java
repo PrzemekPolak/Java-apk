@@ -10,12 +10,15 @@ import java.util.UUID;
 @Entity
 public class Product {
     @Id
-    private final String id;
-    private final String title;
-    private final BigDecimal price;
+    private String id;
+    private String title;
+    private BigDecimal price;
     @Transient
-    private final List<String> keywords;
-    private final String filePath;
+    private List<String> keywords;
+    private String filePath;
+
+    protected Product() {
+    }
 
     public Product(UUID id, String title, BigDecimal price, List<String> keywords, String filePath) {
         this.id = id.toString();
@@ -26,6 +29,6 @@ public class Product {
     }
 
     public String getId() {
-        return  id;
+        return id;
     }
 }
