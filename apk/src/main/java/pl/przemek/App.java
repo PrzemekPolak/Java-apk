@@ -4,7 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import pl.przemek.productcatalog.ProductCatalog;
-import pl.przemek.productcatalog.ProductStorage;
+import pl.przemek.productcatalog.ProductRepository;
+
+import java.math.BigDecimal;
+import java.util.Arrays;
 
 @SpringBootApplication
 public class App {
@@ -13,12 +16,26 @@ public class App {
     }
 
     @Bean
-    public ProductCatalog createProductCatalog(ProductStorage storage) {
-        return new ProductCatalog();
+    public ProductCatalog createProductCatalog(
+            ProductRepository productRepository) {
+        ProductCatalog productCatalog = new ProductCatalog(productRepository);
+        String productId1 = productCatalog.addProduct(
+                "Example product 1",
+                BigDecimal.valueOf(10.10),
+                Arrays.asList("tag1", "tag2"),
+                "https://picsum.photos/id/237/200/300"
+        );
+        productCatalog.publish(productId1);
+
+        String productId2 = productCatalog.addProduct(
+                "Example product 2",
+                BigDecimal.valueOf(20.10),
+                Arrays.asList("tag3"),
+                "https://picsum.photos/300/200"
+        );
+        productCatalog.publish(productId2);
+
+        return productCatalog;
     }
 
-    @Bean
-    public ProductStorage createProductStorage() {
-        return new ProductStorage();
-    }
 }

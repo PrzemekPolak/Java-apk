@@ -16,6 +16,7 @@ public class Product {
     @Transient
     private List<String> keywords;
     private String filePath;
+    private boolean published;
 
     protected Product() {
     }
@@ -30,5 +31,13 @@ public class Product {
 
     public String getId() {
         return id;
+    }
+
+    public void publish() {
+        this.published = true;
+    }
+
+    public boolean isPublished() {
+        return published;
     }
 }

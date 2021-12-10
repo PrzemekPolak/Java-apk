@@ -1,4 +1,4 @@
-package pl.przemek;
+package pl.przemek.legacy_tests;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
