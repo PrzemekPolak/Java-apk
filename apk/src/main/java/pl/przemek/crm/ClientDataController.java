@@ -1,13 +1,14 @@
 package pl.przemek.crm;
 
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
 public class ClientDataController {
     private ClientDataRepository repository;
 
-    public ClientDataController(ClientDataRepository repository) {
+    ClientDataController(ClientDataRepository repository) {
         this.repository = repository;
     }
     @GetMapping("/api/clients")

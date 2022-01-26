@@ -11,10 +11,10 @@ public class ProductStorage {
     }
 
     public void save(Product product) {
-        this.products.put(product.getId(), product);
+        products.put(product.getId(), product);
     }
 
-    public Optional<Product> load(String id) {
-        return Optional.ofNullable(products.get(id));
+    public Optional<Product> load(String productId) {
+        return Optional.ofNullable(products.get(productId));
     }
 }

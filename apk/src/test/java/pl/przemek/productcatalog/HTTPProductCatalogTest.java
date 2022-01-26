@@ -2,6 +2,7 @@ package pl.przemek.productcatalog;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -11,8 +12,6 @@ import org.springframework.http.ResponseEntity;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class HTTPProductCatalogTest {
@@ -34,20 +33,18 @@ public class HTTPProductCatalogTest {
     @Test
     void itLoadsProductsViaEndpoint() {
         //Arrange
-        thereIsDraftProduct("example 0");
-        thereIsProducts("example 1");
-        thereIsProducts("example 2");
-
+        thereIsDraftProduct("examle 0");
+        thereIsProduct("examle 1");
+        thereIsProduct("examle 2");
         //Act
         ResponseEntity<Product[]> response = callApiForProducts();
         Product[] products = response.getBody();
-
         //Assert
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(2, products.length);
     }
 
-    private void thereIsProducts(String productName) {
+    private void thereIsProduct(String productName) {
         String id = productCatalog.addProduct(
                 productName,
                 BigDecimal.ONE,
@@ -69,11 +66,10 @@ public class HTTPProductCatalogTest {
     private ResponseEntity<Product[]> callApiForProducts() {
         String url = String.format(
                 "http://localhost:%s/api/products",
-                serverPort
-        );
+                serverPort);
+
         ResponseEntity<Product[]> response =
                 restTemplate.getForEntity(url, Product[].class);
-
         return response;
     }
 }

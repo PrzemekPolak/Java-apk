@@ -3,15 +3,11 @@ package pl.przemek.productcatalog;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
-
-import java.math.BigDecimal;
-import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class ProductCatalog {
 
-    private final ProductRepository repository;
+    private ProductRepository repository;
 
     public ProductCatalog(ProductRepository repository) {
 
@@ -37,12 +33,17 @@ public class ProductCatalog {
     public List<Product> allProducts() {
         return repository.findAll()
                 .stream()
+                .filter(Product::isPublished)
                 .filter(p -> p.isPublished())
                 .collect(Collectors.toList());
-
     }
 
     public void empty() {
         repository.deleteAll();
+    }
+
+    public Product getById(String productId) {
+        Product product = repository.findById(productId).get();
+        return product;
     }
 }

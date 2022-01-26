@@ -16,9 +16,9 @@ import javax.persistence.Id;
 public class ClientData {
     @Id
     @GeneratedValue
-    private  Integer id;
-    private  String firstname;
-    private  String lastname;
+    private Integer id;
+    private String firstname;
+    private String lastname;
     @Embedded
     private Address address;
 }

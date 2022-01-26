@@ -7,8 +7,12 @@ spring:
     driverClassName: org.h2.Driver
     username: sa
     password: ~
-
   h2:
     console:
       enabled: true
       path: /h2db
+
+
+payu:
+  merchantPosId: ${PAYU_MERCHANT_POS_ID:300746}
+  apiUrl: ${PAYU_API_URL:https://secure.snd.payu.com}
